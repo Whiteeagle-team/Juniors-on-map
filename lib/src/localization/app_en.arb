@@ -1,5 +1,12 @@
 {
-  "appTitle": "juniors_on_map",
+  "appTitle": "juniors on map",
+  "login": "Login",
+  "userName": "User name",
+  "password": "Password",
+  "forgotPassword": "Forgot Password?",
+  "wrong": "Wrong!",
+  "ok": "Ok",
+  "pleasCheckUserNameOrPassword": "Pleas check user name or password.",
   "@appTitle": {
     "description": "The title of the application"
   }
