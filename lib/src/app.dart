@@ -5,17 +5,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:juniors_on_map/src/screens/home/home.dart';
 import 'package:juniors_on_map/src/screens/login/login_page.dart';
 
-import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
-
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
-    required this.settingsController,
   }) : super(key: key);
 
-  final SettingsController settingsController;
 
   @override
   Widget build(BuildContext context) {
@@ -23,53 +18,44 @@ class MyApp extends StatelessWidget {
     //
     // The AnimatedBuilder Widget listens to the SettingsController for changes.
     // Whenever the user updates their settings, the MaterialApp is rebuilt.
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.blue
-    ));
-    return AnimatedBuilder(
-      animation: settingsController,
-      builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          restorationScopeId: 'app',
 
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en', ''), // English, no country code
-          ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      restorationScopeId: 'app',
 
-          onGenerateTitle: (BuildContext context) =>
-              AppLocalizations.of(context)!.appTitle,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''), // English, no country code
+      ],
 
-          theme: ThemeData(
-            primaryColor: const Color.fromRGBO(143, 148, 251, 1)
-          ),
-          // darkTheme: ThemeData.dark(),
-          // themeMode: settingsController.themeMode,
+      onGenerateTitle: (BuildContext context) =>
+      AppLocalizations.of(context)!.appTitle,
 
-          // Define a function to handle named routes in order to support
-          // Flutter web url navigation and deep linking.
-          onGenerateRoute: (RouteSettings routeSettings) {
-            return MaterialPageRoute<void>(
-              settings: routeSettings,
-              builder: (BuildContext context) {
-                switch (routeSettings.name) {
-                  case SettingsView.routeName:
-                    return SettingsView(controller: settingsController);
-                  case LoginPage.routeName:
-                    return  LoginPage();
-                  case Home.routeName:
-                    return  const Home();
-                  default:
-                    return  LoginPage();
-                }
-              },
-            );
+      theme: ThemeData(
+          primaryColor: const Color.fromRGBO(143, 148, 251, 1)
+      ),
+      // darkTheme: ThemeData.dark(),
+      // themeMode: settingsController.themeMode,
+
+      // Define a function to handle named routes in order to support
+      // Flutter web url navigation and deep linking.
+      onGenerateRoute: (RouteSettings routeSettings) {
+        return MaterialPageRoute<void>(
+          settings: routeSettings,
+          builder: (BuildContext context) {
+            switch (routeSettings.name) {
+              case LoginPage.routeName:
+                return  LoginPage();
+              case Home.routeName:
+                return  const Home();
+              default:
+                return  LoginPage();
+            }
           },
         );
       },
