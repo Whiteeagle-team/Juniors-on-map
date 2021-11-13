@@ -11,130 +11,130 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(top: 200),
-                  height: 400,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(300),
-                      ),
-                      color: Colors.blue
-                      // image: DecorationImage(image: Image.asset("assets/images/login.webp").image,fit: BoxFit.cover,)
-                      ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    AppLocalizations.of(context)!.login,
-                    style: const TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 200),
+              height: 400,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    bottomRight: Radius.circular(300),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Color.fromRGBO(143, 148, 251, 0.2),
-                                blurRadius: 20,
-                                offset: Offset(0, 10))
-                          ],
+                  color: Colors.blue,
+                  image: DecorationImage(
+                      image: Image.asset("assets/images/login.jpg").image,
+                      fit: BoxFit.cover,
+                      colorFilter: const ColorFilter.mode(
+                          Colors.black38, BlendMode.darken))),
+              alignment: Alignment.center,
+              child: Text(
+                AppLocalizations.of(context)!.login,
+                style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow:  [
+                        BoxShadow(
+                            color: Colors.blue.withOpacity(0.20),
+                            blurRadius: 20,
+                            offset: const Offset(0, 10))
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                border: Border(
+                              bottom: BorderSide(color: Colors.grey[100]!),
+                            )),
+                            child: TextField(
+                              controller: _userNameController,
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText:
+                                      AppLocalizations.of(context)!.userName,
+                                  helperStyle:
+                                      TextStyle(color: Colors.grey[400])),
+                            )),
+                        Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                border: Border(
+                              bottom: BorderSide(color: Colors.grey[100]!),
+                            )),
+                            child: TextField(
+                              controller: _passController,
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: true,
+                              onSubmitted: (v) => login(context),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText:
+                                      AppLocalizations.of(context)!.password,
+                                  helperStyle:
+                                      TextStyle(color: Colors.grey[400])),
+                            )),
+                        const SizedBox(
+                          height: 30,
                         ),
-                        child: Column(
-                          children: [
-                            Container(
-                                padding: const EdgeInsets.all(8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: MaterialButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () => login(context),
+                              child: Container(
+                                height: 50,
                                 decoration: BoxDecoration(
-                                    border: Border(
-                                  bottom: BorderSide(color: Colors.grey[100]!),
-                                )),
-                                child: TextField(
-                                  controller: _userNameController,
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: AppLocalizations.of(context)!
-                                          .userName,
-                                      helperStyle:
-                                          TextStyle(color: Colors.grey[400])),
-                                )),
-                            Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    border: Border(
-                                  bottom: BorderSide(color: Colors.grey[100]!),
-                                )),
-                                child: TextField(
-                                  controller: _passController,
-                                  onSubmitted: (v) =>login(context),
-
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: AppLocalizations.of(context)!
-                                          .password,
-                                      helperStyle:
-                                          TextStyle(color: Colors.grey[400])),
-                                )),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: MaterialButton(
-                                  padding: EdgeInsets.zero,
-                                  onPressed: () =>login(context),
-                                  child: Container(
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: LinearGradient(colors: [
-                                          Colors.blue,
-                                          Colors.blue.withOpacity(0.6),
-                                        ])),
-                                    child: Center(
-                                      child: Text(
-                                        AppLocalizations.of(context)!.login,
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
+                                    borderRadius: BorderRadius.circular(10),
+                                    gradient: LinearGradient(colors: [
+                                      Colors.blue,
+                                      Colors.blue.withOpacity(0.6),
+                                    ])),
+                                child: Center(
+                                  child: Text(
+                                    AppLocalizations.of(context)!.login,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 70,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.forgotPassword,
-                              style: const TextStyle(color: Colors.blue),
-                            ),
-                          ],
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+                        const SizedBox(
+                          height: 70,
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.forgotPassword,
+                          style: const TextStyle(color: Colors.blue),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
