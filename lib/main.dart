@@ -13,6 +13,6 @@ void main() async {
     child: const MyApp(),
   ));
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent
+      statusBarColor: Colors.transparent,
   ));
 }
